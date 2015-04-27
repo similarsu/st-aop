@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    				">
+	
+	<bean id="transactionManager" class="cn.st.aop.forum.advice.TransactionManager"></bean>
+	<bean id="forumServiceTarget" class="cn.st.aop.forum.advice.ForumService"></bean>
+	<bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean">
+		 <!--因为ForumService是类， 使用cglib代理 -->
+		<property name="proxyTargetClass" value="true"></property>
+		<property name="target" ref="forumServiceTarget"></property>
+		<property name="interceptorNames" value="transactionManager"></property>
+	</bean>
+	
+
+</beans>
