@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    				">
+    <bean id="waiterTarget" class="cn.st.aop.advisor.Waiter"></bean>
+    <bean id="sellerTarget" class="cn.st.aop.advisor.Seller"></bean>
+    
+    <bean id="greetBeforeAdvice" class="cn.st.aop.advisor.GreetBeforeAdvice"></bean>
+    
+    <bean id="greetAdvisor" class="cn.st.aop.advisor.GreetAdvisor">
+    	<!--向切面注入前置增强  -->
+    	<property name="advice" ref="greetBeforeAdvice"></property>
+    </bean>
+    <!-- 定义公共配置信息 -->
+    <bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean">
+    	<property name="interceptorNames" value="greetAdvisor"></property>
+    	<property name="proxyTargetClass" value="true"></property>
+    </bean>
+    
+	<bean id="waiter" parent="parent">
+		<property name="target" ref="waiterTarget"></property>
+	</bean>
+	
+	<bean id="seller" parent="parent">
+		<property name="target" ref="sellerTarget"></property>
+	</bean>
+
+</beans>
