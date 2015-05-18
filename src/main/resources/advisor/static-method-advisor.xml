@@ -7,11 +7,11 @@
     <bean id="waiterTarget" class="cn.st.aop.advisor.Waiter"></bean>
     <bean id="sellerTarget" class="cn.st.aop.advisor.Seller"></bean>
     
-    <bean id="greetBeforeAdvice" class="cn.st.aop.advisor.GreetBeforeAdvice"></bean>
+    <bean id="beforeAdvice" class="cn.st.aop.advisor.BeforeAdvice"></bean>
     
-    <bean id="greetAdvisor" class="cn.st.aop.advisor.GreetAdvisor">
+    <bean id="greetAdvisor" class="cn.st.aop.advisor.staticmethod.GreetAdvisor">
     	<!--向切面注入前置增强  -->
-    	<property name="advice" ref="greetBeforeAdvice"></property>
+    	<property name="advice" ref="beforeAdvice"></property>
     </bean>
     <!-- 定义公共配置信息 -->
     <bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean">

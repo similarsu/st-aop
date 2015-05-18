@@ -6,11 +6,11 @@
     				">
     <bean id="waiterTarget" class="cn.st.aop.advisor.Waiter"></bean>
     
-    <bean id="greetBeforeAdvice" class="cn.st.aop.advisor.GreetBeforeAdvice"></bean>
+    <bean id="beforeAdvice" class="cn.st.aop.advisor.BeforeAdvice"></bean>
     
     <bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
     	<!--向切面注入前置增强  -->
-    	<property name="advice" ref="greetBeforeAdvice"></property>
+    	<property name="advice" ref="beforeAdvice"></property>
     	<property name="patterns">
     		<list>
     			<value>.*greet.*</value>

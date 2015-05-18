@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.st.aop.advisor.Waiter;
 
+
 /**
  * <p>
  * description:静态正则表达式方法匹配切面测试类
@@ -20,7 +21,7 @@ public class RegexpAdvisorTest {
     @Test
     public void testUseSpringXML() {
         ApplicationContext context =
-                new ClassPathXmlApplicationContext("advisor/regexp-advisor.xml");
+                new ClassPathXmlApplicationContext("advisor/regex-pattern-advisor.xml");
         Waiter waiter = (Waiter) context.getBean("waiter");
         waiter.greetTo("张三");
         waiter.serveTo("张三");

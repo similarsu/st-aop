@@ -7,9 +7,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.st.aop.advisor.Seller;
 import cn.st.aop.advisor.Waiter;
 
+
 /**
  * <p>
- * description:前置增强测试类
+ * description:静态普通方法名匹配切面测试类
  * </p>
  * 
  * @author coolearth
@@ -21,7 +22,7 @@ public class GreetingAdvisorTest {
     @Test
     public void testUseSpringXML() {
         ApplicationContext context =
-                new ClassPathXmlApplicationContext("advisor/greeting-before-advisor.xml");
+                new ClassPathXmlApplicationContext("advisor/static-method-advisor.xml");
         Waiter waiter = (Waiter) context.getBean("waiter");
         waiter.greetTo("张三");
         waiter.serveTo("张三");

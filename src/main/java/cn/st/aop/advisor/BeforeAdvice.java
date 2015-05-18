@@ -13,7 +13,7 @@ import org.springframework.aop.MethodBeforeAdvice;
  * @since 2015年5月15日
  * @version v1.0
  */
-public class GreetBeforeAdvice implements MethodBeforeAdvice {
+public class BeforeAdvice implements MethodBeforeAdvice {
 
     @Override
     public void before(Method method, Object[] args, Object target) throws Throwable {
