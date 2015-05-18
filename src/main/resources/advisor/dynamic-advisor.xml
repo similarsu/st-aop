@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    				">
+    <bean id="waiterTarget" class="cn.st.aop.advisor.Waiter"></bean>
+    
+    <bean id="beforeAdvice" class="cn.st.aop.advisor.BeforeAdvice"></bean>
+    
+    <bean id="greetingDefaultDynamicPointcut" class="cn.st.aop.advisor.dynamic.GreetingDefaultDynamicPointcut"></bean>
+    
+    <bean id="dynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+    	<!--向切面注入前置增强  -->
+    	<property name="advice" ref="beforeAdvice"></property>
+    	<property name="pointcut" ref="greetingDefaultDynamicPointcut"></property>
+    </bean>
+    <!-- 定义公共配置信息 -->
+    <bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean">
+    	<property name="interceptorNames" value="dynamicAdvisor"></property>
+    	<property name="proxyTargetClass" value="true"></property>
+    </bean>
+    
+	<bean id="waiter" parent="parent">
+		<property name="target" ref="waiterTarget"></property>
+	</bean>
+
+</beans>
