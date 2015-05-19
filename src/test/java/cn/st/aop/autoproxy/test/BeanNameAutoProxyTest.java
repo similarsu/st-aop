@@ -25,7 +25,7 @@ public class BeanNameAutoProxyTest {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("autoproxy/bean-name-auto-proxy.xml");
         Waiter waiter = (Waiter) context.getBean("waiter");
-        Seller seller = (Seller) context.getBean("seller");
+        Seller seller=(Seller) context.getBean("seller");
         waiter.greetTo("张三");
         waiter.serveTo("张三");
         seller.greetTo("张三");
