@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    				">
+	
+	<bean id="introductionAdvisor" class="org.springframework.aop.support.DefaultIntroductionAdvisor">
+		<constructor-arg>
+			<bean class="cn.st.aop.advisor.introduce.ControllablePerformanceMonitor"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="forumServiceTarget" class="cn.st.aop.advisor.introduce.ForumServiceImpl"></bean>
+	<bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 由于引介增强一定要通过创建子类来生成代理，必须强制使用CGLIB -->
+		<property name="proxyTargetClass" value="true"></property>
+		<property name="target" ref="forumServiceTarget"></property>
+		<property name="interceptorNames" value="introductionAdvisor"></property>
+	</bean>
+</beans>

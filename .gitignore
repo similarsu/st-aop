@@ -1,3 +1,5 @@
-*.*
+*.settings
 *target
-!.gitignore
+*.classpath
+*.project
+*.springBeans
