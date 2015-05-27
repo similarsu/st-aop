@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="waiter" class="cn.st.aop.autoproxy.Waiter"></bean>
+	<bean id="seller" class="cn.st.aop.autoproxy.Seller"></bean>
+	
+	<bean id="beforeAdvice" class="cn.st.aop.autoproxy.BeforeAdvice"></bean>
+	
+	<bean id="regexpMethodPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="beforeAdvice"></property>
+		<property name="patterns">
+			<list>
+				<value>.*greet.*</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 将容器中的advisor织入到匹配的bean中 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>
+
+</beans>
